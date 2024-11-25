@@ -16,6 +16,11 @@
    USE northwind;
    SOURCE Northwind.MySQL5.sql;
    SHOW TABLES;
+   ```
+4. 離開 MySQL
+   ```
+   exit;
+   ```
 
 
 以下是實現查詢每個客戶總訂單數量的步驟和相關指令：
@@ -23,7 +28,6 @@
 ---
 
 ### **步驟 1: 使用 Sqoop 匯出 `customers` 表至 HDFS**
-
 1. **匯出 `customers` 表到 HDFS**:
    ```bash
    sqoop import \
@@ -44,7 +48,10 @@
 ---
 
 ### **步驟 2: 使用 Hive 讀取 HDFS 的 `customers` 數據並創建表格**
-
+進入 Hive
+```bash
+hive
+```
 1. **創建 `customers` 表**:
    ```sql
    CREATE TABLE customers (
@@ -77,11 +84,14 @@
 
 ---
 
-### **題目 3: 查詢銷售數據**
+### **題目: 查詢銷售數據**
 #### **需求**
 從 `Orders` 表中查詢每個客戶的總訂單數量。
 ### **步驟 1: 使用 Hive 讀取 MySQL 中的 `orders` 表數據並創建表格**
-
+進入 Hive
+```bash
+hive
+```
 1. **將 `orders` 表作為外部表連接到 MySQL**:
    ```sql
    add jar hdfs://hive-jdbc-handler-3.1.2.jar;
