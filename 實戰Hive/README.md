@@ -97,28 +97,30 @@ hive
    add jar hdfs://hive-jdbc-handler-3.1.2.jar;
    
    CREATE EXTERNAL TABLE orders (
-       OrderID INT,
-       CustomerID STRING,
-       EmployeeID INT,
-       OrderDate STRING,
-       RequiredDate STRING,
-       ShippedDate STRING,
-       ShipVia INT,
-       Freight DOUBLE,
-       ShipName STRING,
-       ShipAddress STRING,
-       ShipCity STRING,
-       ShipRegion STRING,
-       ShipPostalCode STRING,
-       ShipCountry STRING
+      OrderID INT,
+      CustomerID STRING,
+      EmployeeID INT,
+      OrderDate STRING,
+      RequiredDate STRING,
+      ShippedDate STRING,
+      ShipVia INT,
+      Freight DOUBLE,
+      ShipName STRING,
+      ShipAddress STRING,
+      ShipCity STRING,
+      ShipRegion STRING,
+      ShipPostalCode STRING,
+      ShipCountry STRING
    )
-   STORED BY "org.apache.hadoop.hive.jdbc.HiveStorageHandler"
+   STORED BY 'org.apache.hive.storage.jdbc.JdbcStorageHandler'
    TBLPROPERTIES (
-       "hive.sql.database.type" = "MYSQL",
-       "hive.jdbc.url"="jdbc:mysql://localhost:3306/northwind",
-       "hive.jdbc.username"="root",
-       "hive.jdbc.password"="hadoop_csim",
-       "hive.jdbc.table"="Orders"
+      "hive.sql.database.type" = "MYSQL",
+      "hive.sql.jdbc.driver" = "com.mysql.cj.jdbc.Driver",
+      "hive.sql.jdbc.url" = "jdbc:mysql://localhost/northwind",
+      "hive.sql.dbcp.username" = "root",
+      "hive.sql.dbcp.password" = "hadoop_csim",
+      "hive.sql.table" = "Orders",
+      "hive.sql.dbcp.maxActive" = "1"
    );
    ```
 
